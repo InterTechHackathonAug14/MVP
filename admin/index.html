@@ -42,7 +42,7 @@
       var geocoder;
       var map;
       var infowindow;
-	  
+	  var currentPlace = null;
 	  var frmTpl = '<form id="frmSubmit"><div id="infoWindow"><div>{0}: {1}</div><div>Services</div><div><input id="services" type="text"/></div><button type="button" onclick="postLocation($(\'frmSubmit\'));">Submit</button></div></form>';
 	  
       function initialize() {
@@ -71,7 +71,7 @@
           }
         }
       }
-
+	  
       function createMarker(place) {
         var placeLoc = place.geometry.location;
         var marker = new google.maps.Marker({
@@ -80,7 +80,7 @@
         });
 
         google.maps.event.addListener(marker, 'click', function() {
-          console.log(place);
+          currentPlace = place;
           infowindow.setContent(frmTpl.replace("{0}", place.types[0]).replace("{1}", place.name));
           infowindow.open(map, this);
         });
