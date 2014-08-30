@@ -88,18 +88,19 @@
 		console.log('currentPlace', currentPlace);
 		var text = $('#services').val();
 		console.log('servicesText', text);
-		// addToWhitelist({
-		// 	placeId: currentPlace.place_id,
-		// 	lat: currentPlace.geometry.location.k,
-		// 	lng: currentPlace.geometry.location.B,
-		// 	services: text
-		// });
+		addToWhitelist("google_id=" + currentPlace.place_id);
+		//{
+			//placeId: currentPlace.place_id,
+			//lat: currentPlace.geometry.location.k,
+			//lng: currentPlace.geometry.location.B,
+			//services: text
+		//});
 	}
 
 
 	function addToWhitelist(data){
 		console.log(data);
-		var url = "";
+		var url = "http://178.62.26.98:2222/places";
 
 		$.ajax(url, {
 			method: "POST",
@@ -115,4 +116,15 @@
 		});
 	}
 
+
+	//function getFromWhitelist(id){
+	//	console.log(id);
+	//	var url = "http://178.62.26.98:2222/places/{0}".replace("{0}", id);
+	//	$.get( url, function( data ) {
+	//		var energy = data.tags.join();
+	//		$('#services').val(services)
+	//	}).fail(function() {
+	//		alert( "error" );
+	//	});
+	//}
 }());
