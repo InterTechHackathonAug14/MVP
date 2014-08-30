@@ -46,7 +46,13 @@
         }
         map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
         var btn = document.getElementById('goSearch');
-        //btn.addEventListener
+        btn.addEventListener('click', codeAddress);
+        window.addEventListener('keypress', function (e) {
+          var key = e.which || e.keyCode;
+          if (key == 13) {
+            codeAddress();
+          }
+        });
       }
 
       function callback(results, status) {
