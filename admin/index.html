@@ -20,8 +20,14 @@
         padding: 5px;
         border: 1px solid #999;
       }
+	  #infoWindow {
+		width: 500px;
+		height: 300px;
+	  }
     </style>
+    <script src="https://code.jquery.com/jquery-2.1.1.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places"></script>
+    <script src="./js/app.js"></script>
   </head>
 
   <body>
@@ -36,7 +42,9 @@
       var geocoder;
       var map;
       var infowindow;
-
+	  var currentPlace = null;
+	  var frmTpl = '<form id="frmSubmit"><div id="infoWindow"><div>{0}: {1}</div><div>Services</div><div><input id="services" type="text"/></div><button type="button" onclick="postLocation($(\'frmSubmit\'));">Submit</button></div></form>';
+	  
       function initialize() {
         geocoder = new google.maps.Geocoder();
         var latlng = new google.maps.LatLng(53, -1);
@@ -63,7 +71,7 @@
           }
         }
       }
-
+	  
       function createMarker(place) {
         var placeLoc = place.geometry.location;
         var marker = new google.maps.Marker({
@@ -74,8 +82,8 @@
         //TODO: check if already in db
 
         google.maps.event.addListener(marker, 'click', function() {
-          console.log(place);
-          infowindow.setContent(place.types[0] + ' : ' + place.name);
+          currentPlace = place;
+          infowindow.setContent(frmTpl.replace("{0}", place.types[0]).replace("{1}", place.name));
           infowindow.open(map, this);
         });
       }
