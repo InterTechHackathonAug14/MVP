@@ -1,4 +1,7 @@
 
+	function addToWhiteList(data) {
+		console.log(data);
+	}
 
 	  function postLocation() {
 		var text = $('#services').val();
