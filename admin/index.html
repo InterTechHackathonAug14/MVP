@@ -44,7 +44,7 @@
       var infowindow;
 	  var currentPlace = null;
 	  var frmTpl = '<form id="frmSubmit"><div id="infoWindow"><div>{0}: {1}</div><div>Services</div><div><input id="services" type="text"/></div><button type="button" onclick="postLocation($(\'frmSubmit\'));">Submit</button></div></form>';
-	  
+
       function initialize() {
         geocoder = new google.maps.Geocoder();
         var latlng = new google.maps.LatLng(53, -1);
@@ -71,7 +71,7 @@
           }
         }
       }
-	  
+
       function createMarker(place) {
         var placeLoc = place.geometry.location;
         var marker = new google.maps.Marker({
@@ -117,18 +117,6 @@
           } else {
             alert('Geocode was not successful for the following reason: ' + status);
           }
-        });
-      }
-
-      function addToWhitelist(){
-        $.ajax(url, {
-          method: "POST",
-          data: {
-            //placeId,
-            //latLng,
-            //services
-          },
-
         });
       }
 
