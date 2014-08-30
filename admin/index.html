@@ -71,6 +71,8 @@
           position: place.geometry.location
         });
 
+        //TODO: check if already in db
+
         google.maps.event.addListener(marker, 'click', function() {
           console.log(place);
           infowindow.setContent(place.types[0] + ' : ' + place.name);
@@ -107,6 +109,18 @@
           } else {
             alert('Geocode was not successful for the following reason: ' + status);
           }
+        });
+      }
+
+      function addToWhitelist(){
+        $.ajax(url, {
+          method: "POST",
+          data: {
+            //placeId,
+            //latLng,
+            //services
+          },
+
         });
       }
 
